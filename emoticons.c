@@ -5,9 +5,9 @@ typedef struct {
   char* name;
   int start;
   int end;
-} range;
+} range_t;
 
-range ranges[] = {
+range_t ranges[] = {
   {"Emoticons", 0x1F600, 0x1F64F},
   {"Miscellaneous Symbols and Pictographs", 0x1F300, 0x1F5FF},
   {"Supplemental Symbols and Pictographs", 0x1F900, 0x1F9FF},
@@ -22,7 +22,6 @@ range ranges[] = {
 //  U+0800 ..   U+FFFF  3 bytes  1110 xxxx   10xx xxxx   10xx xxxx
 // U+10000 .. U+10FFFF  4 bytes  1111 0xxx   10xx xxxx   10xx xxxx   10xx xxxx
 
-char buf[] = {0,0,0,0,0};
 int utf8out(char* buf, int ch) {
   if(ch <= 0x7F) {
     buf[0] = ch;
@@ -51,8 +50,10 @@ int utf8out(char* buf, int ch) {
 }
 
 int main(int argc, char *argv[]) {
-  for(int i = 0; i < sizeof(ranges) / sizeof(range); i++) {
-    range range = ranges[i];
+  char buf[] = {0,0,0,0,0};
+
+  for(int i = 0; i < sizeof(ranges) / sizeof(range_t); i++) {
+    range_t range = ranges[i];
     printf("## %s\n\n", range.name);
     for(int emoticon = range.start; emoticon <= range.end; emoticon++) {
       int s = utf8out(buf, emoticon);
