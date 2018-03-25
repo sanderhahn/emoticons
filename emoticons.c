@@ -56,13 +56,18 @@ int main(int argc, char *argv[]) {
     printf("## %s\n\n", range.name);
     for(int emoticon = range.start; emoticon <= range.end; emoticon++) {
       int s = utf8out(buf, emoticon);
+      printf("`");
       for(int i = 0; i < s; i++) {
-        printf("%02x ", buf[i] & 0xff);
+        printf("%02x", buf[i] & 0xff);
+        if(i != s - 1) {
+          printf(" ");
+        }
       }
+      printf("` ");
       if(s == 0 || fwrite(buf, 1, s, stdout) != s) {
         exit(1);
       }
-      printf("\n");
+      printf("\n\n");
     }
   }
   return 0;
