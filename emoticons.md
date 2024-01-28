@@ -3362,7 +3362,7 @@
 
 `e2 9b b5` ⛵
 
-`e2 9b b6` ⛶
+`e2 9b b6` ⛶[https://www.reddit.com/](https://www.reddit.com/)
 
 `e2 9b b7` ⛷
 
